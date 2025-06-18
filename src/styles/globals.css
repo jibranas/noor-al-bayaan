@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-container {
+  perspective: 1000px;
+}
+
+@font-face {
+  font-family: 'Arabic';
+  src: url('/fonts/arabic-font.ttf') format('truetype');
+}
+
+.font-arabic {
+  font-family: 'Arabic', sans-serif;
+} 
