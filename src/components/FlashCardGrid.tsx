@@ -59,6 +59,7 @@ export default function FlashCardGrid() {
       {/* Current Card */}
       <div className="w-full max-w-xl mx-auto">
         <FlashCard
+          key={flashcards[currentIndex]?._id?.toString()}
           card={flashcards[currentIndex]}
           onNextCard={nextCard}
           isLastCard={isLastCard}

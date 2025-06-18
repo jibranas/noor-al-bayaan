@@ -70,14 +70,7 @@ export default function FlashCard({ card, onNextCard, isLastCard }: FlashCardPro
 
   const handleNextCard = () => {
     onNextCard();
-    setIsFlipped(false);
-    setFeedback(null);
   };
-
-  useEffect(() => {
-    setIsFlipped(false);
-    setFeedback(null);
-  }, [card]);
 
   return (
     <div className="flex flex-col items-center gap-4">
