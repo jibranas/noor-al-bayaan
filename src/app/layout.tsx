@@ -20,9 +20,26 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={`${inter.className} flex flex-col min-h-screen`}>
           <Navigation />
-          {children}
+          <main className="flex-grow">
+            {children}
+          </main>
+          <footer className="bg-white shadow-sm py-4 mt-auto">
+            <div className="container mx-auto px-4 text-center text-gray-600">
+              <p>
+                Developed by your brother{' '}
+                <a
+                  href="https://www.youtube.com/@MrJustJib"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline font-medium"
+                >
+                  Jibran Asif Shareef
+                </a>
+              </p>
+            </div>
+          </footer>
           <Analytics />
         </body>
       </html>
