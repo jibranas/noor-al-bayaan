@@ -29,7 +29,7 @@ const userProgressSchema = new Schema({
 // Update the 'updatedAt' timestamp for the subdocument when it's changed
 userProgressSchema.pre('findOneAndUpdate', function(next) {
   const update = this.getUpdate();
-  if (update.$set && update.$set['responses.$.isCorrect'] !== undefined) {
+  if (update && update.$set && update.$set['responses.$.isCorrect'] !== undefined) {
     this.set('responses.$.updatedAt', new Date());
   }
   next();
