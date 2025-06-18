@@ -152,9 +152,11 @@ export default function FlashCard({ card, onNextCard, isLastCard }: FlashCardPro
                 </SignedIn>
                 <SignedOut>
                   <div className="text-center p-4 mt-2 bg-gray-50 rounded-lg w-full max-w-[250px]">
-                    <p className="font-semibold text-gray-800">Track your progress</p>
+                    <p className="font-semibold text-gray-800">
+                      Track your progress
+                    </p>
                     <SignInButton mode="modal">
-                      <button className="mt-2 text-blue-600 hover:underline font-medium">
+                      <button className="mt-1 text-blue-600 hover:underline font-medium text-sm">
                         Sign In to save your results
                       </button>
                     </SignInButton>
@@ -182,6 +184,19 @@ export default function FlashCard({ card, onNextCard, isLastCard }: FlashCardPro
           </button>
         </div>
       )}
+      <SignedOut>
+        {isFlipped && (
+          <div className="text-center">
+            <button
+              onClick={handleNextCard}
+              className="mt-4 px-8 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-colors shadow-md"
+              aria-label={isLastCard ? 'Finish' : 'Next Card'}
+            >
+              <span>{isLastCard ? 'Finish' : 'Next Card'}</span>
+            </button>
+          </div>
+        )}
+      </SignedOut>
     </div>
   );
 } 
