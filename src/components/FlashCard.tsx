@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import type { FlashCard as FlashCardType } from '@/types/flashcard';
 import { FaVolumeUp, FaCheck, FaTimes } from 'react-icons/fa';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 
 interface FlashCardProps {
   card: FlashCardType;
@@ -119,35 +119,47 @@ export default function FlashCard({ card, onNextCard, isLastCard }: FlashCardPro
                   <FaVolumeUp className="w-6 h-6" />
                 </button>
 
-                {userId && !feedback && (
-                  <div className="flex flex-col gap-3 w-full min-w-[200px]">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleResponse(true);
-                      }}
-                      disabled={isSubmitting}
-                      className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors disabled:opacity-50"
-                      aria-label="I got it right"
-                    >
-                      <FaCheck className="w-5 h-5" />
-                      <span>I got it right</span>
-                    </button>
+                <SignedIn>
+                  {!feedback && (
+                    <div className="flex flex-col gap-3 w-full min-w-[200px]">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleResponse(true);
+                        }}
+                        disabled={isSubmitting}
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors disabled:opacity-50"
+                        aria-label="I got it right"
+                      >
+                        <FaCheck className="w-5 h-5" />
+                        <span>I got it right</span>
+                      </button>
 
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleResponse(false);
-                      }}
-                      disabled={isSubmitting}
-                      className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors disabled:opacity-50"
-                      aria-label="I got it wrong"
-                    >
-                      <FaTimes className="w-5 h-5" />
-                      <span>I got it wrong</span>
-                    </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleResponse(false);
+                        }}
+                        disabled={isSubmitting}
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors disabled:opacity-50"
+                        aria-label="I got it wrong"
+                      >
+                        <FaTimes className="w-5 h-5" />
+                        <span>I got it wrong</span>
+                      </button>
+                    </div>
+                  )}
+                </SignedIn>
+                <SignedOut>
+                  <div className="text-center p-4 mt-2 bg-gray-50 rounded-lg w-full max-w-[250px]">
+                    <p className="font-semibold text-gray-800">Track your progress</p>
+                    <SignInButton mode="modal">
+                      <button className="mt-2 text-blue-600 hover:underline font-medium">
+                        Sign In to save your results
+                      </button>
+                    </SignInButton>
                   </div>
-                )}
+                </SignedOut>
               </div>
             </div>
           </div>

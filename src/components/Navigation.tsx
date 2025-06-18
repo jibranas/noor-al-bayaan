@@ -53,6 +53,13 @@ export default function Navigation() {
               Progress
             </Link>
           </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="py-4 px-1 border-b-2 border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300 text-sm font-medium transition-colors duration-200">
+                Progress
+              </button>
+            </SignInButton>
+          </SignedOut>
         </nav>
       </div>
     </header>
